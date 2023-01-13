@@ -1,0 +1,9 @@
+[includeIf "gitdir:~/workplace/mobile/"]
+    path = /Users/asanchez/.config/dotAsFiles/apps/git/company/.gitconfig
+[includeIf "gitdir:~/workplace/asanchez/"]
+    path =  /Users/asanchez/.config/dotAsFiles/apps/git/dev/.gitconfig  
+[filter "lfs"]
+        smudge = git-lfs smudge -- %f
+        process = git-lfs filter-process
+        required = true
+        clean = git-lfs clean -- %f
