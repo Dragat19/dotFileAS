@@ -23,6 +23,8 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # If set to an empty array, this variable will have no effect.
 # ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 
+typeset -g POWERLEVEL9K_INSTANT_PROMPT=off
+
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 
@@ -78,7 +80,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-syntax-highlighting npm react-native  zsh-autosuggestions)
+plugins=(git zsh-syntax-highlighting npm zsh-autosuggestions)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -113,11 +115,6 @@ source $ZSH/oh-my-zsh.sh
 export PATH="/opt/homebrew/bin:/usr/local/bin:$PATH"
 alias ibrew='arch -x86_64 /usr/local/bin/brew'
 
-#Configuracion nvm
-export NVM_DIR="$HOME/.nvm"
-  [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && . "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
-  [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && . "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"
-
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
@@ -125,13 +122,9 @@ export PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
 export PUPPETEER_EXECUTABLE_PATH=`which chromium`
 
 #Configuracion n
-export N_PREFIX=$HOME/.n
-export PATH=$N_PREFIX/bin:$PATH
-
-#Android
-export ANDROID_HOME=$HOME/Library/Android/sdk
-export PATH=$PATH:$ANDROID_HOME/emulator
-export PATH=$PATH:$ANDROID_HOME/platform-tools
+#export N_PREFIX=$HOME/.n
+#export PATH=$N_PREFIX/bin:$PATH
+#export N_PRESERVE_NPM=1
 
 # Alias genrales
 alias ni="npm i"
@@ -140,5 +133,53 @@ alias sshKey="pbcopy < ~/.ssh/id_rsa.pub"
 # Alias react native
 alias rn-init="npx react-native init"
 alias rn-metro="npx react-native start"
-alias rn-android="npx react-native run-android"
-alias rn-ios="npx react-native run-ios"
+alias rn-doctor="npx react-native doctor"
+alias rn-clean="npx react-native clean"
+
+export JAVA_HOME=$(/usr/libexec/java_home)
+##export JAVA_HOME=/Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home
+#export PATH=/opt/homebrew/bin:$PATH
+
+export ANDROID_HOME=$HOME/Library/Android/sdk
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/tools
+export PATH=$PATH:$ANDROID_HOME/tools/bin
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+
+#export PATH="/opt/homebrew/opt/node@16/bin:$PATH" 
+# Add Visual Studio Code (code)
+
+export N_PREFIX="$HOME/.n"
+export PATH="$N_PREFIX/bin:$PATH"
+
+export PATH="$PATH:/opt/homebrew/bin"
+export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
+
+source /Users/asanchez/.docker/init-zsh.sh || true # Added by Docker Desktop
+
+export PATH="$PATH:/usr/local/bin:/usr/local/sbin:$HOME/bin"
+
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+
+# bun completions
+[ -s "/Users/asanchez/.bun/_bun" ] && source "/Users/asanchez/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+# Added by Windsurf
+export PATH="/Users/asanchez/.codeium/windsurf/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
+
+# copy keys shh
+alias copyssh="cat ~/.ssh/id_rsa.pub | pbcopy"
+alias copysshAS="cat ~/.ssh/id_ed25519_personal.pub | pbcopy"
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/asanchez/.lmstudio/bin"
+# End of LM Studio CLI section
+
+#Shortcut Davivienda
+alias dv-control-center="cd /Users/asanchez/workplace/mobile/davivienda && cursor davivienda-control-center.code-workspace"
+alias dv-modulo-regional="cd /Users/asanchez/workplace/mobile/davivienda && cursor davivienda-modulo-regional.code-workspace"
